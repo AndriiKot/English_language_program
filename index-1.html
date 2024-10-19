@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Переводы</title>
+    <style>
+      .phrase {
+        margin-bottom: 10px;
+      }
+
+      .translation {
+        display: none;
+        margin-left: 10px;
+        font-style: italic;
+      }
+
+      button {
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Список фраз</h1>
+
+    <label>
+      <input type="radio" name="language" value="en" checked /> Английский →
+      Русский
+    </label>
+    <label>
+      <input type="radio" name="language" value="ru" /> Русский → Английский
+    </label>
+
+    <div id="phrases">
+      <div class="phrase" data-en="I see" data-ru="Я вижу">
+        <span class="text"></span>
+        <span class="translation"></span>
+        <button class="toggle">Показать перевод</button>
+      </div>
+      <div class="phrase" data-en="I work" data-ru="Я работаю">
+        <span class="text"></span>
+        <span class="translation"></span>
+        <button class="toggle">Показать перевод</button>
+      </div>
+      <div
+        class="phrase"
+        data-en="I live in Bratislava"
+        data-ru="Я живу в Братиславе"
+      >
+        <span class="text"></span>
+        <span class="translation"></span>
+        <button class="toggle">Показать перевод</button>
+      </div>
+      <div class="phrase" data-en="I understand" data-ru="Я понимаю">
+        <span class="text"></span>
+        <span class="translation"></span>
+        <button class="toggle">Показать перевод</button>
+      </div>
+      <!-- Добавьте остальные фразы здесь -->
+    </div>
+
+    <script>
+      const phrases = document.querySelectorAll(".phrase");
+      const textElements = document.querySelectorAll(".text");
+      const translationElements = document.querySelectorAll(".translation");
+      const toggleButtons = document.querySelectorAll(".toggle");
+
+      function updateText() {
+        const language = document.querySelector(
+          'input[name="language"]:checked'
+        ).value;
+
+        phrases.forEach((phrase) => {
+          const enText = phrase.getAttribute("data-en");
+          const ruText = phrase.getAttribute("data-ru");
+
+          if (language === "en") {
+            phrase.querySelector(".text").textContent = enText;
+            phrase.querySelector(".translation").textContent = ruText;
+          } else {
+            phrase.querySelector(".text").textContent = ruText;
+            phrase.querySelector(".translation").textContent = enText;
+          }
+        });
+      }
+
+      toggleButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+          const translation = this.previousElementSibling; // Соседний элемент translation
+          if (translation.style.display === "none") {
+            translation.style.display = "inline";
+            this.textContent = "Скрыть перевод";
+          } else {
+            translation.style.display = "none";
+            this.textContent = "Показать перевод";
+          }
+        });
+      });
+
+      // Начальная установка текстов
+      updateText();
+
+      // Добавим слушатель на переключатели языка
+      const languageRadios = document.querySelectorAll(
+        'input[name="language"]'
+      );
+      languageRadios.forEach((radio) => {
+        radio.addEventListener("change", updateText);
+      });
+    </script>
+  </body>
+</html>
