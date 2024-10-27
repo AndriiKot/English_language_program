@@ -3,7 +3,7 @@ const phrasesContainer = document.getElementById("phrases");
 
 // Функция для загрузки переводов из JSON файла
 async function loadTranslations() {
-  const response = await fetch("A0-L12.json");
+  const response = await fetch("A0-L14.json");
   const translations = await response.json();
   populatePhrases(translations);
 }
