@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const path = require("node:path");
+const { validLevels, isValidLesson } = require("./utils");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,19 +14,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "index.html"));
 });
-
-const validLevels = ["A0", "A1", "A2", "B1", "B2", "C1", "C2"];
-
-const isValidLesson = (lesson, startRang = 1, endRang = 50) => {
-  const parsedLesson = parseInt(lesson);
-  let flag;
-  if (isNaN(parsedLesson)) {
-    flag = false;
-  } else {
-    flag = parsedLesson >= startRang && parsedLesson <= endRang;
-  }
-  return flag;
-};
 
 app.get("/:level", (req, res) => {
   const level = req.params.level;
@@ -42,7 +30,6 @@ app.get("/:level/:lesson", (req, res) => {
 
   if (validLevels.includes(level)) {
     if (isValidLesson(lesson)) {
-      console.log(isValidLesson(lesson));
       res.render("lesson", { level: level, lesson: lesson });
     } else {
       res.status(404).send("Неверный номер урока");
@@ -56,3 +43,4 @@ app.get("/:level/:lesson", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Сервер запущен на http://localhost:${PORT}`);
 });
+
