@@ -1,10 +1,9 @@
-
 const phrasesContainer = document.getElementById("phrases");
-const pathLesson = process.argv[2]  || "A0/A0-L1.json";
 
+console.log(phrasesContainer);
 // Функция для загрузки переводов из JSON файла
 async function loadTranslations() {
-  const response = await fetch(`./data/${pathLesson}`);
+  const response = await fetch("./data/A0/A0-L8.json");
   const translations = await response.json();
   populatePhrases(translations);
 }

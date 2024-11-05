@@ -10,6 +10,7 @@ app.set("views", path.join(__dirname, "views"));
 
 app.use(express.static(path.join(__dirname, "public")));
 
+
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "index.html"));
 });
@@ -42,7 +43,7 @@ app.get("/:level/:lesson", (req, res) => {
 
   if (validLevels.includes(level)) {
     if (isValidLesson(lesson)) {
-      console.log(isValidLesson(lesson));
+      // console.log(isValidLesson(lesson));
       res.render("lesson", { level: level, lesson: lesson });
     } else {
       res.status(404).send("Неверный номер урока");
@@ -52,7 +53,6 @@ app.get("/:level/:lesson", (req, res) => {
   }
 });
 
-// Запуск сервера
 app.listen(PORT, () => {
   console.log(`Сервер запущен на http://localhost:${PORT}`);
 });
