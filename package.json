@@ -1,7 +1,7 @@
 {
   "name": "engish_programm",
   "version": "1.0.0",
-  "description": "",
+  "description": "A web application for learning English through interactive lessons and exercises.",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
