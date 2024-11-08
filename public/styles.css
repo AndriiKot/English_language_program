@@ -1,77 +1,143 @@
 ﻿.body {
-    font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
-    color: #333;
-    margin: 0;
-    padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
-    max-width: 600px;
-    margin: 100px auto;
-    text-align: center;
+  max-width: 600px;
+  margin: 100px auto;
+  text-align: center;
 }
 
 .heading {
-    font-size: 2.5em;
-    margin-bottom: 20px;
+  font-size: 2.5em;
+  margin-bottom: 20px;
 }
 
 .menu {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    overflow: hidden; /* Добавлено для предотвращения выхода элементов за границы */
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  overflow: hidden; /* Добавлено для предотвращения выхода элементов за границы */
 }
 
 .menu__list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0; /* Добавлено для устранения отступов по умолчанию */
+  list-style-type: none;
+  padding: 0;
+  margin: 0; /* Добавлено для устранения отступов по умолчанию */
 }
 
 .menu__item {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
 .menu__link {
-    display: inline-block;
-    background-color: #4CAF50;
-    color: white;
-    padding: 15px 30px;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s, transform 0.2s;
+  display: inline-block;
+  background-color: #4caf50;
+  color: white;
+  padding: 15px 30px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.2s;
   &.disabled {
     pointer-events: none;
     text-decoration: none;
-    background-color: lightgrey; 
-    opacity: 0.5; 
-    cursor: default; 
-    font-style: italic; 
+    background-color: lightgrey;
+    opacity: 0.5;
+    cursor: default;
+    font-style: italic;
   }
 }
 
-
 .menu__link:hover {
-    background-color: #45a049;
-    transform: translateY(-2px);
+  background-color: #45a049;
+  transform: translateY(-2px);
 }
 
 .menu__link:active {
-    transform: translateY(1px);
+  transform: translateY(1px);
 }
 
 /* Горизонтальное меню */
 @media (min-aspect-ratio: 1/1) {
-    .menu__list {
-        display: flex; /* Заменяем вертикальный список на горизонтальный */
-        justify-content: center; /* Центрируем элементы */
-        flex-wrap: wrap; /* Позволяет элементам обертываться */
-    }
+  .menu__list {
+    display: flex; /* Заменяем вертикальный список на горизонтальный */
+    justify-content: center; /* Центрируем элементы */
+    flex-wrap: wrap; /* Позволяет элементам обертываться */
+  }
 
-    .menu__item {
-        margin: 10px; /* Убираем верхний и нижний отступ, добавляем левый и правый */
-    }
+  .menu__item {
+    margin: 10px; /* Убираем верхний и нижний отступ, добавляем левый и правый */
+  }
+}
+
+/*  lesson  styles  */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #343a40;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+label {
+  display: inline-block;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.phrase {
+  display: flex;
+  align-item: center;
+  margin-bottom: 15px;
+  padding: 15px;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  background-color: #ffffff;
+  transition: box-shadow 0.3s ease;
+}
+
+.phrase:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.translation {
+  display: none;
+  margin-left: 10px;
+  font-style: italic;
+  color: #6c757d;
+}
+
+button {
+  margin-left: auto;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:focus {
+  outline: none;
 }

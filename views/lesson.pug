@@ -4,13 +4,17 @@ html(lang="ru")
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title Переводы
-    link(rel="stylesheet" href="style.css")
+    link(rel="stylesheet" href="/styles.css")
   body
     h1 Список фраз
     label
-      input(type="radio" name="language" value="en" checked)
+      input(type="radio" name="language" value="en" )
       | Английский → Русский
     label
-      input(type="radio" name="language" value="ru")
+      input(type="radio" name="language" value="ru" checked)
       | Русский → Английский
     div#phrases
+    script.
+      window.translations = !{JSON.stringify(translations)}
+    script(src="/script.js")
+

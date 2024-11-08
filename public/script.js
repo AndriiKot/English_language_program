@@ -1,12 +1,6 @@
+"use strict";
 const phrasesContainer = document.getElementById("phrases");
-
-console.log(phrasesContainer);
-// Функция для загрузки переводов из JSON файла
-async function loadTranslations() {
-  const response = await fetch("./data/A0/A0-L8.json");
-  const translations = await response.json();
-  populatePhrases(translations);
-}
+const translations = window.translations;
 
 // Функция для заполнения фразами
 function populatePhrases(translations) {
@@ -101,7 +95,7 @@ function handleKeyPress(event) {
 }
 
 // Загружаем переводы при загрузке страницы
-loadTranslations();
+populatePhrases(translations);
 
 // Добавляем обработчик клика для выделения фразы
 const phrases = document.querySelectorAll(".phrase");
