@@ -60,11 +60,15 @@ app.get("/:level/:lesson", async (req, res) => {
   if (validLevels.includes(level)) {
     if (isValidLesson(lesson)) {
       const translations = await getTranslations(level, lesson);
-      res.render("lesson", {
-        level: level,
-        lesson: lesson,
-        translations: translations,
-      });
+      if (Object.keys(translations).length === 0) {
+        res.render("developingLesson");
+      } else {
+        res.render("lesson", {
+          level: level,
+          lesson: lesson,
+          translations: translations,
+        });
+      }
     } else {
       res.status(404).send("Неверный номер урока");
     }
