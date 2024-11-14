@@ -13,6 +13,7 @@
   },
   "rules": {
     "space-before-keywords": "error",
+    "space-infix-ops": ["error"],
     "indent": ["error", 2],
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "single"],
