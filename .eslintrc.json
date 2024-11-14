@@ -12,6 +12,7 @@
     "BigInt": true
   },
   "rules": {
+    "space-before-keywords": "error",
     "indent": ["error", 2],
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "single"],
@@ -104,7 +105,6 @@
       }
     ],
     "space-in-parens": ["error", "never"],
-    "space-infix-ops": ["error"],
     "space-unary-ops": [
       "error",
       {
