@@ -5,7 +5,15 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "precommit": "lint-staged",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,tsx,ts,less,scss,md,json}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "keywords": [
     "english",
@@ -16,7 +24,14 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
-    "nodemon": "^3.1.7",
     "pug": "^3.0.3"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "nodemon": "^3.1.7",
+    "prettier": "^3.3.3"
   }
 }
