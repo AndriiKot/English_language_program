@@ -42,7 +42,9 @@
   padding: 15px 30px;
   text-decoration: none;
   border-radius: 5px;
-  transition: background-color 0.3s, transform 0.2s;
+  transition:
+    background-color 0.3s,
+    transform 0.2s;
   &.disabled {
     pointer-events: none;
     text-decoration: none;

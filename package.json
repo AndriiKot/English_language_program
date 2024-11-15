@@ -8,13 +8,13 @@
     "start": "node server.js",
     "dev": "nodemon server.js",
     "precommit": "lint-staged",
-    "prepare": "husky"
+    "prepare": "husky",
+    "format": "prettier --write"
   },
   "lint-staged": {
     "**/*.{js,jsx,tsx,ts,less,scss,md,json}": [
       "eslint --fix",
-      "prettier --write",
-      "git add ."
+      "prettier --write"
     ]
   },
   "keywords": [

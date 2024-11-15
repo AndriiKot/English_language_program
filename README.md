@@ -49,27 +49,27 @@ To start the application, you have two options:
 
 - **For Development:**
 
-   Use `nodemon` to automatically restart the server when file changes are detected.
+  Use `nodemon` to automatically restart the server when file changes are detected.
 
-   ```bash
-   npm run dev
-   ```
+  ```bash
+  npm run dev
+  ```
 
 - **For Production:**
 
-   Start the server using Node.js:
+  Start the server using Node.js:
 
-   ```bash
-   npm start
-   ```
+  ```bash
+  npm start
+  ```
 
 Navigate to `http://localhost:3000` in your web browser to access the application.
 
 ## Scripts
 
-| Command     | Description                                  |
-|-------------|----------------------------------------------|
-| `npm start` | Runs the app in production mode.            |
+| Command       | Description                                           |
+| ------------- | ----------------------------------------------------- |
+| `npm start`   | Runs the app in production mode.                      |
 | `npm run dev` | Runs the app in development mode with live reloading. |
 
 ## Contributing
@@ -89,6 +89,8 @@ This project is licensed under the ISC License. See the [LICENSE](LICENSE) file 
 ---
 
 Feel free to modify this template according to your project's specifics. If you have more features or sections in mind, add them to provide additional context for users and contributors!
+
 ```
 
 Make sure to replace `https://github.com/YourUsername/engish_programm.git` with your actual GitHub repository link and update any specific information to fit your project details.
+```
