@@ -1,167 +1,33 @@
-module.exports = {
-  env: {
-    browser: true,
-    es6: true,
-    node: true,
-  },
-  extends: 'eslint:recommended',
-  parserOptions: {
-    ecmaVersion: 2020,
-  },
-  globals: {
-    BigInt: true,
-  },
-  rules: {
-    'keyword-spacing': [
-      'error',
-      {
-        before: true,
-        after: true,
-        overrides: {
-          function: {
-            after: false,
-          },
-        },
-      },
-    ],
-    'space-infix-ops': ['error'],
-    indent: ['error', 2],
-    'linebreak-style': ['error', 'unix'],
-    quotes: ['error', 'single'],
-    semi: ['error', 'always'],
-    'no-loop-func': ['error'],
-    'block-spacing': ['error', 'always'],
-    camelcase: ['error'],
-    eqeqeq: ['error', 'always'],
-    strict: ['error', 'global'],
-    'brace-style': [
-      'error',
-      '1tbs',
-      {
-        allowSingleLine: true,
-      },
-    ],
-    'comma-style': ['error', 'last'],
-    'comma-spacing': [
-      'error',
-      {
-        before: false,
-        after: true,
-      },
-    ],
-    'eol-last': ['error'],
-    'func-call-spacing': ['error', 'never'],
-    'key-spacing': [
-      'error',
-      {
-        beforeColon: false,
-        afterColon: true,
-        mode: 'minimum',
-      },
-    ],
-    'max-len': [
-      'error',
-      {
-        code: 80,
-        ignoreUrls: true,
-      },
-    ],
-    'max-nested-callbacks': [
-      'error',
-      {
-        max: 7,
-      },
-    ],
-    'new-cap': [
-      'error',
-      {
-        newIsCap: true,
-        capIsNew: false,
-        properties: true,
-      },
-    ],
-    'new-parens': ['error'],
-    'no-lonely-if': ['error'],
-    'no-trailing-spaces': ['error'],
-    'no-unneeded-ternary': ['error'],
-    'no-whitespace-before-property': ['error'],
-    'object-curly-spacing': ['error', 'always'],
-    'operator-assignment': ['error', 'always'],
-    'operator-linebreak': ['error', 'after'],
-    'semi-spacing': [
-      'error',
-      {
-        before: false,
-        after: true,
-      },
-    ],
-    'space-before-blocks': ['error', 'always'],
-    'space-before-function-paren': [
-      'error',
-      {
-        anonymous: 'never',
-        named: 'never',
-        asyncArrow: 'always',
-      },
-    ],
-    'space-in-parens': ['error', 'never'],
-    'space-unary-ops': [
-      'error',
-      {
-        words: true,
-        nonwords: false,
-        overrides: {
-          typeof: false,
-        },
-      },
-    ],
-    'no-unreachable': ['error'],
-    'no-global-assign': ['error'],
-    'no-self-compare': ['error'],
-    'no-unmodified-loop-condition': ['error'],
-    'no-constant-condition': [
-      'error',
-      {
-        checkLoops: false,
-      },
-    ],
-    'no-console': ['off'],
-    'no-useless-concat': ['error'],
-    'no-useless-escape': ['error'],
-    'no-shadow-restricted-names': ['error'],
-    'no-use-before-define': [
-      'error',
-      {
-        functions: false,
-      },
-    ],
-    'arrow-parens': ['error', 'always'],
-    'arrow-body-style': ['error', 'as-needed'],
-    'arrow-spacing': ['error'],
-    'no-confusing-arrow': [
-      'error',
-      {
-        allowParens: true,
-      },
-    ],
-    'no-useless-computed-key': ['error'],
-    'no-useless-rename': ['error'],
-    'no-var': ['error'],
-    'object-shorthand': ['error', 'always'],
-    'prefer-arrow-callback': ['error'],
-    'prefer-const': ['error'],
-    'prefer-numeric-literals': ['error'],
-    'prefer-rest-params': ['error'],
-    'prefer-spread': ['error'],
-    'rest-spread-spacing': ['error', 'never'],
-    'template-curly-spacing': ['error', 'never'],
-  },
-  overrides: [
-    {
-      files: ['1-let.js'],
-      rules: {
-        'prefer-const': 'off',
+'use strict';
+
+import js from '@eslint/js';
+import globals from 'globals';
+import prettierPlugin from 'eslint-plugin-prettier';
+import eslintConfigPrettier from 'eslint-config-prettier';
+
+export default [
+  {
+    ignores: ['dist', 'node_modules', 'coverage', 'eslint.config.js'],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        ...globals.es2020,
       },
     },
-  ],
-};
+    plugins: {
+      prettier: prettierPlugin,
+    },
+    rules: {
+      ...prettierPlugin.configs.recommended.rules,
+      ...eslintConfigPrettier.rules,
+      'prefer-const': 'error',
+      'max-lines': ['warn', { max: 124 }],
+      'max-params': ['error', 3],
+    },
+  },
+  js.configs.recommended,
+  {
+    files: ['**/*.{js,jsx}'],
+  },
+];
