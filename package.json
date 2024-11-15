@@ -13,7 +13,8 @@
   "lint-staged": {
     "**/*.{js,jsx,tsx,ts,less,scss,md,json}": [
       "eslint --fix",
-      "prettier --write"
+      "prettier --write",
+      "git add ."
     ]
   },
   "keywords": [
