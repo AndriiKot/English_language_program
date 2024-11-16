@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "Executed .husky/pre-tag"
+
