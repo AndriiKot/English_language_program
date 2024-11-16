@@ -1,0 +1,6 @@
+#!/bin/sh
+
+echo "Running post-commit hook"
+
+
+
