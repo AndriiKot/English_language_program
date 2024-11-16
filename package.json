@@ -1,15 +1,14 @@
 {
-  "name": "engish_programm",
-  "version": "1.0.0",
+  "name": "english_program",
+  "version": "1.1.1",
   "description": "A web application for learning English through interactive lessons and exercises.",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "precommit": "lint-staged",
-    "prepare": "husky",
-    "format": "prettier --write"
+    "pre-commit": "lint-staged && node ./scripts/task-scripts/manage-package-version/manage-package-version.cjs",
+    "prepare": "husky"
   },
   "lint-staged": {
     "**/*.{js,jsx,tsx,ts,less,scss,md,json}": [
@@ -37,10 +36,5 @@
     "lint-staged": "^15.2.10",
     "nodemon": "^3.1.7",
     "prettier": "^3.3.3"
-  },
-  "overrides": {
-    "eslint": {
-      "eslint": "^9.14.0"
-    }
   }
 }

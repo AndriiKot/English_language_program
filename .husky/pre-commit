@@ -1,21 +1,3 @@
-npm run precommit
+npm run pre-commit
 
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-set -x  # Включить отладку
-
-# Получаем последний созданный тег
-TAG_NAME=$(git describe --tags --abbrev=0 2>/dev/null)
-if [ -z "$TAG_NAME" ]; then
-    echo "Теги не найдены!"
-    exit 1
-fi
-
-# Вызываем ваш скрипт с полученным тегом
-if node ./update-version.cjs "$TAG_NAME"; then
-    echo "done!"
-else
-    echo "Ошибка при запуске скрипта update-version.cjs."
-    exit 1
-fi
+ 
