@@ -1,0 +1,5 @@
+#!/usr/local/bin/node
+
+console.log("Hello from pre-commit");
+
+// Здесь вы можете добавить вашу логику проверки или линтинга.
