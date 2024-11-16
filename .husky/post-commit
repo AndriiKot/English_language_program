@@ -1,5 +1,4 @@
-#!/bin/node
-console.log("HI!")
+#!/bin/sh
 . "$(git rev-parse --git-dir)/hooks/post-commit"  # Call the original Git hook
 # Alternatively, you can execute custom Husky commands here
 echo "Executed .husky/post-commit"
