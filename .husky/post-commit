@@ -1,6 +1,6 @@
-#!/bin/sh
 
-echo "Running post-commit hook"
+#!/usr/local/bin/node
 
+console.log("Hello from post-commit");
 
 
