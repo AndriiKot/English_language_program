@@ -31,9 +31,6 @@ if (!versionTag || !/^version_(\d+)_([\d]+)_([\d]+)$/.test(versionTag)) {
 const newVersion = versionTag.replace('version_', '').replace(/_/g, '.');
 const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
 
-console.log('newVersion', newVersion);
-console.log('packageJson', packageJson.version);
-console.log(!(packageJson.version === newVersion));
 
 if (!(packageJson.version === newVersion)) {
   packageJson.version = newVersion;
