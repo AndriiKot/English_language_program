@@ -1,5 +1,5 @@
 #!/bin/sh
 
-echo "Hello from Husky"
+. "$(git rev-parse --git-dir)/hooks/post-commit" 
 
-// Здесь вы можете добавить вашу логику проверки или линтинга.
+echo "Hello from .husky/post-commit"
