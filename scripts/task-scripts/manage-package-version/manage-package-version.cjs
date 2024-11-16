@@ -20,9 +20,6 @@ const { execSync } = require('node:child_process');
 const packageJsonPath = path.join(__dirname, '../../../package.json');
 const versionTag = execSync('git describe --tags --abbrev=0').toString().trim();
 
-console.log('versionTag', versionTag);
-console.log('packageJsonPath', packageJsonPath);
-
 if (!versionTag || !/^version_(\d+)_([\d]+)_([\d]+)$/.test(versionTag)) {
   console.error('Тег должен быть в формате version_X_Y_Z');
   process.exit(1);
