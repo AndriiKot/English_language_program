@@ -38,7 +38,8 @@ console.log(!(packageJson.version === newVersion));
 if (!(packageJson.version === newVersion)) {
   packageJson.version = newVersion;
   fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2) + '\n', 'utf-8');
-  console.log(`Версия обновлена до ${newVersion}`);
+  execSync('git add package.json');
+  execSync(`git commit -m "Update package.json version to ${newVersion}"`);
+  console.log(`updated package.json version to ${newVersion}`);
 }
 
-console.log('post-tag done!');
