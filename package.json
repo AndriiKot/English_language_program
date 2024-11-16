@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "pre-commit": "lint-staged && node ./scripts/task-scripts/manage-package-version/manage-package-version.cjs",
+    "pre-commit": "node ./scripts/task-scripts/manage-package-version/manage-package-version.cjs && lint-staged",
     "prepare": "husky"
   },
   "lint-staged": {
