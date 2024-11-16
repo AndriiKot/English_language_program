@@ -1,5 +1,5 @@
-#!/usr/local/bin/node
+#!/bin/sh
 
-console.log("Hello from pre-commit");
+echo "Hello from Husky"
 
 // Здесь вы можете добавить вашу логику проверки или линтинга.
