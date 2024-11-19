@@ -11,8 +11,8 @@
     "lint": "eslint --fix",
     "check-lint": "eslint .",
     "check-format": "prettier --check .",
-    "pre-commit": "node ./scripts/task-scripts/manage-package-version/manage-package-version.cjs && eslint --fix && prettier --write . && lint-staged",
-    "prepare": "husky"
+    "prepare": "husky",
+    "last-lint": "lint-staged"
   },
   "lint-staged": {
     "**/*.{js,jsx,tsx,ts,less,scss,md,json}": [

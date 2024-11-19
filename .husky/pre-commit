@@ -1,3 +1,11 @@
-npm run pre-commit
+
+node "./scripts/task-scripts/manager-package-version.js"
+
+npm run lint
+
+npm run format
+
+npm run last-lint
+
 
  
