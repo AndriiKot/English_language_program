@@ -12,7 +12,7 @@
     "check-lint": "eslint .",
     "check-format": "prettier --check .",
     "prepare": "husky",
-    "last-lint": "lint-staged"
+    "last-lint-staged": "lint-staged"
   },
   "lint-staged": {
     "**/*.{js,jsx,tsx,ts,less,scss,md,json}": [
