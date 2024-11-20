@@ -5,7 +5,9 @@ import { execSync } from 'node:child_process';
 const packageJsonPath = path.join(process.cwd(), 'package.json');
 
 try {
-  const versionTag = execSync('git describe --tags --abbrev=0').toString().trim();
+  const versionTag = execSync('git describe --tags --abbrev=0')
+    .toString()
+    .trim();
 
   if (!versionTag || !/^version_(\d+)_([\d]+)_([\d]+)$/.test(versionTag)) {
     console.error('Tag must be in the format version_X_Y_Z');
@@ -18,7 +20,11 @@ try {
   if (packageJson.version !== newVersion) {
     console.log('!!!testing new version!!!');
     packageJson.version = newVersion;
-    fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2) + '\n', 'utf-8');
+    fs.writeFileSync(
+      packageJsonPath,
+      JSON.stringify(packageJson, null, 2) + '\n',
+      'utf-8',
+    );
     execSync('git add package.json');
     console.log(`\x1b[32m\n
 Updated package.json version to ${newVersion}\n\x1b[0m`);

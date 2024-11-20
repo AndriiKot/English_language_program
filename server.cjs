@@ -40,7 +40,12 @@ app.get('/:level', (req, res) => {
 
 async function getTranslations(level, lesson) {
   try {
-    const filePath = path.join(__dirname, 'data', level, `${level}-L${lesson}.json`);
+    const filePath = path.join(
+      __dirname,
+      'data',
+      level,
+      `${level}-L${lesson}.json`,
+    );
     const data = await fs.readFile(filePath, 'utf8');
     return JSON.parse(data);
   } catch (error) {

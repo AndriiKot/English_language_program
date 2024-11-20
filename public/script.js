@@ -62,7 +62,9 @@ function toggleTranslation() {
 
 // Функция для обновления текста на основе выбранного языка
 function updateText() {
-  const language = document.querySelector('input[name="language"]:checked').value;
+  const language = document.querySelector(
+    'input[name="language"]:checked',
+  ).value;
 
   const phrases = document.querySelectorAll('.phrase');
   phrases.forEach((phrase) => {
