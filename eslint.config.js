@@ -7,7 +7,7 @@ import eslintConfigPrettier from 'eslint-config-prettier';
 
 export default [
   {
-    ignores: ['dist', 'node_modules', 'coverage', 'eslint.config.js'],
+    ignores: ['node_modules', 'eslint.config.js'],
     languageOptions: {
       globals: {
         ...globals.browser,
