@@ -3,4 +3,6 @@ git ls-remote --tags origin | awk '{print $2}' | sed 's|refs/tags/||' | grep -v 
 
 git push origin --tags --no-verify
 
-git push
+
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+git push origin "$current_branch"
