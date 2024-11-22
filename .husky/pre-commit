@@ -1,5 +1,5 @@
 
-node "./scripts/task-scripts/manager-package-version.js"
+node "./task-scripts/manager-package-version.js"
 
 npm run lint
 
