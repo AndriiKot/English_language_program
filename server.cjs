@@ -63,10 +63,14 @@ app.get('/:level/:lesson', async (req, res) => {
       if (Object.keys(translations).length === 0) {
         res.render('developingLesson');
       } else {
+        const arrayPhrases = Object.entries(translations);
+        const lenArrayPhrases = arrayPhrases.length;
+
         res.render('card-lesson', {
           level: level,
           lesson: lesson,
           translations: translations,
+          lenArrayPhrases: lenArrayPhrases,
         });
       }
     } else {

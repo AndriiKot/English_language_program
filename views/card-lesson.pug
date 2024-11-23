@@ -8,7 +8,7 @@ html(lang="ru")
   body
     div.card
       h2.card__level #{level} lesson-#{lesson}
-      p.card__count 0/#{lesson}
+      p.card__count 1/#{lenArrayPhrases}
       div.card__inputs
         label.card__input
           input(type="radio" name="language" value="en" checked="checked")
@@ -22,3 +22,7 @@ html(lang="ru")
       button.card__button.card__button--addPhrase add to top
       button.card__button.card__button--nextPhrase next
       button.card__button.card__button--prevPhrase prev
+  script.
+    window.translations = !{JSON.stringify(translations)}
+  script(src="/scripts/card.js")
+
