@@ -1,6 +1,6 @@
 'use strict';
 
-import { validationCurrentCount } from './validators.js';
+import { handlers } from './handlers.js';
 
 const translations = window.translations;
 
@@ -14,29 +14,8 @@ const countLastPhrase = document.querySelector('.card__count--element__last');
 countFirstPhrase.textContent = `${currentCount}`;
 countLastPhrase.textContent = lenArrayPhrases;
 
-const handlers = {
-  'card__button--next': () => {
-    validationCurrentCount(); // test
-    console.log('next');
-  },
-  'card__button--prev': () => {
-    console.log('prev');
-  },
-  'card__button--show': () => {
-    console.log('translation');
-  },
-  'card__button--add': () => {
-    console.log('add');
-  },
-};
-
 document.body.addEventListener('click', (event) => {
   const activeBtn = event.target;
-  const activeClassList = activeBtn.classList;
-
-  activeClassList.forEach((className) => {
-    if (handlers[className]) {
-      handlers[className]();
-    }
-  });
+  const activeID = activeBtn.id;
+  handlers[activeID]();
 });

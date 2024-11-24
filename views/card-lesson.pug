@@ -21,11 +21,11 @@ html(lang="ru")
           | ru → en
       h1.card__phrase
       p.card__translation(style="visibility: hidden;")
-      button.card__button.card__button--show translation
-      button.card__button.card__button--add add to top
-      button.card__button.card__button--next next
-      button.card__button.card__button--prev prev
+      button#show.card__button.card__button--show translation
+      button#add.card__button.card__button--add add to top
+      button#next.card__button.card__button--next next
+      button#prev.card__button.card__button--prev prev
   script.
     window.translations = !{JSON.stringify(translations)}
-  script(src="/scripts/card.js")
+  script(type="module" src="/scripts/card.js")
 
