@@ -9,9 +9,9 @@ html(lang="ru")
     div.card
       h2.card__level #{level} lesson-#{lesson}
       p.card__count
-        span.card__count--element.card__count--element__first
+        span#currentCount.card__count--element
         | /
-        span.card__count--element.card__count--element__last
+        span#lastCount.card__count--element
       div.card__inputs
         label.card__input
           input(type="radio" name="language" value="en" checked="checked")

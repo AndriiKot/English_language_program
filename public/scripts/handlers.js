@@ -1,11 +1,10 @@
 'use strict';
+
+import { changeCount } from './utils.js';
+
 export const handlers = {
-  next: () => {
-    console.log('next');
-  },
-  prev: () => {
-    console.log('prev');
-  },
+  next: (count, maxCount) => changeCount(count, maxCount, 1),
+  prev: (count, maxCount) => changeCount(count, maxCount, -1),
   show: () => {
     console.log('translation');
   },
