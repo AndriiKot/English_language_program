@@ -1,0 +1,18 @@
+{
+  "0001-video": {
+    "src": "https://www.youtube.com/watch?v=XzSmeogTZi0&t",
+    "type": "video"
+  },
+  "0002-video": {
+    "src": "https://www.youtube.com/watch?v=LyfzaU1txDI",
+    "type": "video"
+  },
+  "0003-video": {
+    "src": "https://www.youtube.com/watch?v=iKpJwjz8pwI",
+    "type": "video"
+  },
+  "0004-video": {
+    "src": "https://www.youtube.com/watch?v=XPimUoBuNKk",
+    "type": "video"
+  }
+}
