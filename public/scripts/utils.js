@@ -11,4 +11,10 @@ const changeCount = (currentCount, maxCount, change) => {
   return newCount;
 };
 
-export { changeCount };
+const hiddenElement = (element) => {
+  element.classList.toggle('hidden');
+};
+
+const isCountLimit = (currentCount, limit) => currentCount === limit;
+
+export { changeCount, hiddenElement, isCountLimit };

@@ -1,14 +1,22 @@
 'use strict';
 
-import { changeCount } from './utils.js';
+import { changeCount, hiddenElement } from './utils.js';
 
 export const handlers = {
-  next: (count, maxCount) => changeCount(count, maxCount, 1),
-  prev: (count, maxCount) => changeCount(count, maxCount, -1),
+  next: (count, maxCount) => {
+    return changeCount(count, maxCount, 1);
+  },
+  prev: (count, minCount) => {
+    return changeCount(count, minCount, -1);
+  },
   show: (element) => {
     console.log(element);
+    hiddenElement(element);
   },
-  add: () => {
+
+  add: (element) => {
     console.log('add');
+    console.log(element);
+    hiddenElement(element);
   },
 };
