@@ -8,6 +8,14 @@ const cardPhraseEN = document.querySelector('.card__phrase-en');
 const cardPhraseRU = document.querySelector('.card__phrase-ru');
 const nextBtn = document.querySelector('#next');
 const prevBtn = document.querySelector('#prev');
+const inputEn = document.querySelector('.card__inputs [value="en"]');
+// const inputRu = document.querySelector('.card__inputs [value="ru"]');
+
+if (inputEn.checked) {
+  cardPhraseRU.style.visibility = 'hidden';
+} else {
+  cardPhraseEN.style.visibility = 'hidden';
+}
 
 const translations = window.translations;
 const arrayPhrases = Object.entries(translations);
@@ -43,7 +51,10 @@ document.body.addEventListener('click', (event) => {
       handlers.add();
       break;
     case 'show':
-      handlers.show();
+      if (inputEn.checked) {
+        cardPhraseRU.style.visibility = 'visible';
+      }
+      // handlers.show(cardPhraseRU);
       break;
     default:
       break;
@@ -58,4 +69,11 @@ document.body.addEventListener('click', (event) => {
   } else {
     nextBtn.disabled = false;
   }
+  // if (inputEn.checked) {
+  //   cardPhraseRU.style.visibility = 'hidden';
+  //   cardPhraseEN.style.visibility = 'visible';
+  // } else {
+  //   cardPhraseEN.style.visibility = 'hidden';
+  //   cardPhraseRU.style.visibility = 'visible';
+  // }
 });
