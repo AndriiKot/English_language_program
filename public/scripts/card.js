@@ -1,40 +1,94 @@
 'use strict';
 
-import { handlers } from './handlers.js';
 import { isCountLimit } from './utils.js';
 
-const lastCount = document.querySelector('#lastCount');
-const currentCount = document.querySelector('#currentCount');
-const cardPhraseEN = document.querySelector('.card__phrase-en');
-const cardPhraseRU = document.querySelector('.card__phrase-ru');
-const nextBtn = document.querySelector('#next');
-const prevBtn = document.querySelector('#prev');
+const dataJson = window.translations;
+const array = Object.entries(dataJson);
 
-const translations = window.translations;
-const arrayPhrases = Object.entries(translations);
-const lenArrayPhrases = arrayPhrases.length;
-
-const defaultCount = 1;
-
-currentCount.textContent = `${defaultCount}`;
-lastCount.textContent = lenArrayPhrases;
-
-cardPhraseEN.textContent = arrayPhrases[defaultCount - 1][0];
-cardPhraseRU.textContent = arrayPhrases[defaultCount - 1][1];
-
-const updateCount = (delta) => {
-  const count = +currentCount.textContent;
-  const newCount = count + delta;
-
-  if (newCount >= 1 && newCount <= lenArrayPhrases) {
-    currentCount.textContent = newCount;
-    cardPhraseEN.textContent = arrayPhrases[newCount - 1][0];
-    cardPhraseRU.textContent = arrayPhrases[newCount - 1][1];
-
-    nextBtn.disabled = isCountLimit(newCount, lenArrayPhrases);
-    prevBtn.disabled = isCountLimit(newCount, 1);
-  }
+const createTemplatePrase = (mainPhrase, translation) => {
+  const template = `
+      <h1 class="card__phrase main-language">${mainPhrase}</h1>
+      <h2 class="card__phrase translation">${translation}</h2>
+  `;
+  return template;
 };
+
+class Card {
+  constructor() {
+    this.arrayPhrases = array;
+
+    this.defaultCount = 1;
+    this.currentCount = this.defaultCount;
+    this.maxCount = array.length;
+
+    this.lastCountElement = document.querySelector('#lastCount');
+    this.currentCountElement = document.querySelector('#currentCount');
+    this.nextBtn = document.querySelector('#next');
+    this.prevBtn = document.querySelector('#prev');
+    this.showBtn = document.querySelector('#show');
+    this.addBtn = document.querySelector('#add');
+    this.radioBtnEn = document.querySelector('#en');
+    this.radioBtnRu = document.querySelector('#ru');
+    this.radioBtnEn.checked = true;
+
+    this.initialize();
+  }
+
+  initialize() {
+    this.lastCountElement.textContent = this.maxCount;
+    this.updateDataCard();
+  }
+
+  updateDataCard() {
+    this.currentCountElement.textContent = `${this.currentCount}`;
+    this.targetPhrase = this.arrayPhrases[this.currentCount - 1];
+    console.log(this.radioBtnEn.checked);
+    console.log(this.radioBtnRu.checked);
+    this.mainPhrase = this.radioBtnEn.checked
+      ? this.targetPhrase[0]
+      : this.targetPhrase[1];
+    this.translation = this.radioBtnRu.checked
+      ? this.targetPhrase[0]
+      : this.targetPhrase[1];
+    console.log(this.mainPhrase);
+    console.log(this.translation);
+    const template = createTemplatePrase(this.mainPhrase, this.translation);
+    console.log(document.querySelector('#phrases'));
+    document.querySelector('#phrases').innerHTML = `${template}`;
+  }
+
+  next() {
+    if (!isCountLimit(this.currentCount, this.maxCount)) {
+      this.currentCount++;
+      this.updateDataCard();
+    }
+  }
+
+  prev() {
+    if (this.currentCount > 1) {
+      this.currentCount--;
+      this.updateDataCard();
+    }
+  }
+  add() {
+    console.log('add');
+  }
+  show() {
+    console.log('show');
+  }
+  en() {
+    this.radioBtnEn.checked = true;
+    this.radioBtnRu.checked = false;
+    this.updateDataCard();
+  }
+  ru() {
+    this.radioBtnEn.checked = false;
+    this.radioBtnRu.checked = true;
+    this.updateDataCard();
+  }
+}
+
+const card = new Card();
 
 document.body.addEventListener('click', (event) => {
   const activeBtn = event.target;
@@ -42,16 +96,22 @@ document.body.addEventListener('click', (event) => {
 
   switch (activeID) {
     case 'next':
-      updateCount(1);
+      card.next();
       break;
     case 'prev':
-      updateCount(-1);
+      card.prev();
       break;
     case 'add':
-      handlers.add();
+      card.add();
       break;
     case 'show':
-      handlers.show();
+      card.show();
+      break;
+    case 'en':
+      card.en();
+      break;
+    case 'ru':
+      card.ru();
       break;
     default:
       break;

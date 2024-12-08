@@ -14,17 +14,16 @@ html(lang="ru")
         span#lastCount.card__count--element
       div.card__inputs
         label.card__input-en
-          input(type="radio" name="language" value="en" checked="checked")
+          input(id = "en" type="radio" name="language" value="en")
           | en → ru
         label.card__input-ru
-          input(type="radio" name="language" value="ru" )
+          input(id = "ru" type="radio" name="language" value="ru" )
           | ru → en
-      h1.card__phrase-en
-      h2.card__phrase-ru.hidden.translation
       button#show.card__button.card__button--show translation
       button#add.card__button.card__button--add add to top
       button#next.card__button.card__button--next next
-      button#prev.card__button.card__button--prev(disabled) prev
+      button#prev.card__button.card__button--prev prev
+      div#phrases phrases-test
   script.
     window.translations = !{JSON.stringify(translations)}
   script(type="module" src="/scripts/card.js")
