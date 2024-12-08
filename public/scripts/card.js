@@ -42,18 +42,13 @@ class Card {
   updateDataCard() {
     this.currentCountElement.textContent = `${this.currentCount}`;
     this.targetPhrase = this.arrayPhrases[this.currentCount - 1];
-    console.log(this.radioBtnEn.checked);
-    console.log(this.radioBtnRu.checked);
     this.mainPhrase = this.radioBtnEn.checked
       ? this.targetPhrase[0]
       : this.targetPhrase[1];
     this.translation = this.radioBtnRu.checked
       ? this.targetPhrase[0]
       : this.targetPhrase[1];
-    console.log(this.mainPhrase);
-    console.log(this.translation);
     const template = createTemplatePrase(this.mainPhrase, this.translation);
-    console.log(document.querySelector('#phrases'));
     document.querySelector('#phrases').innerHTML = `${template}`;
   }
 
