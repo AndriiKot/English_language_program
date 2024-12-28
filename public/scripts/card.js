@@ -99,7 +99,6 @@ const objCard = new Card();
 document.body.addEventListener('click', (event) => {
   const elActiveBtn = event.target;
   const strActiveID = elActiveBtn.id;
-
   switch (strActiveID) {
     case 'next':
       objCard.next();
