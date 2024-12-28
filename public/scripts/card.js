@@ -2,111 +2,122 @@
 
 import { isCountLimit } from './utils.js';
 
-const dataJson = window.translations;
-const array = Object.entries(dataJson);
+const objDataJson = window.translations;
+const arrArray = Object.entries(objDataJson);
 
-const createTemplatePrase = (mainPhrase, translation) => {
-  const template = `
-      <h1 class="card__phrase main-language">${mainPhrase}</h1>
-      <h2 class="card__phrase translation">${translation}</h2>
+const createTemplatePrase = (strMainPhrase, strTranslation) => {
+  const strTemplate = `
+      <h1 class="card__phrase main-language">${strMainPhrase}</h1>
+      <h2 class="card__phrase translation">${strTranslation}</h2>
   `;
-  return template;
+  return strTemplate;
 };
 
 class Card {
   constructor() {
-    this.arrayPhrases = array;
+    this.arrArrayPhrases = arrArray;
 
-    this.defaultCount = 1;
-    this.currentCount = this.defaultCount;
-    this.maxCount = array.length;
+    this.numDefaultCount = 1;
+    this.numCurrentCount = this.numDefaultCount;
+    this.numMaxCount = arrArray.length;
 
-    this.lastCountElement = document.querySelector('#lastCount');
-    this.currentCountElement = document.querySelector('#currentCount');
-    this.nextBtn = document.querySelector('#next');
-    this.prevBtn = document.querySelector('#prev');
-    this.showBtn = document.querySelector('#show');
-    this.addBtn = document.querySelector('#add');
-    this.radioBtnEn = document.querySelector('#en');
-    this.radioBtnRu = document.querySelector('#ru');
-    this.radioBtnEn.checked = true;
+    this.elLastCount = document.querySelector('#lastCount');
+    this.elCurrentCount = document.querySelector('#currentCount');
+    this.elNextBtn = document.querySelector('#next');
+    this.elPrevBtn = document.querySelector('#prev');
+    this.elShowBtn = document.querySelector('#show');
+    this.elAddBtn = document.querySelector('#add');
+    this.elRadioBtnEn = document.querySelector('#en');
+    this.elRadioBtnRu = document.querySelector('#ru');
+    this.elRadioBtnEn.checked = true;
 
     this.initialize();
   }
 
   initialize() {
-    this.lastCountElement.textContent = this.maxCount;
+    this.elLastCount.textContent = this.numMaxCount;
+    this.elCurrentCount.textContent = this.numCurrentCount;
     this.updateDataCard();
   }
 
+  getPhrases() {
+    let arrPhrases = this.arrArrayPhrases[this.numCurrentCount - 1];
+    if (!Array.isArray(arrPhrases) || arrPhrases.length < 2) {
+      arrPhrases = ['', ''];
+    }
+    const boolIsEn = this.elRadioBtnEn.checked;
+    const boolIsRu = this.elRadioBtnRu.checked;
+
+    return {
+      strPhrase: arrPhrases[+boolIsEn],
+      strTrans: arrPhrases[+boolIsRu],
+    };
+  }
+
   updateDataCard() {
-    this.currentCountElement.textContent = `${this.currentCount}`;
-    this.targetPhrase = this.arrayPhrases[this.currentCount - 1];
-    this.mainPhrase = this.radioBtnEn.checked
-      ? this.targetPhrase[0]
-      : this.targetPhrase[1];
-    this.translation = this.radioBtnRu.checked
-      ? this.targetPhrase[0]
-      : this.targetPhrase[1];
-    const template = createTemplatePrase(this.mainPhrase, this.translation);
-    document.querySelector('#phrases').innerHTML = `${template}`;
+    this.elCurrentCount.textContent = `${this.numCurrentCount}`;
+    const { strPhrase, strTrans } = this.getPhrases();
+    const strTemplate = createTemplatePrase(strPhrase, strTrans);
+    document.querySelector('#phrases').innerHTML = `${strTemplate}`;
   }
 
   next() {
-    if (!isCountLimit(this.currentCount, this.maxCount)) {
-      this.currentCount++;
+    if (!isCountLimit(this.numCurrentCount, this.numMaxCount)) {
+      this.numCurrentCount++;
       this.updateDataCard();
     }
   }
 
   prev() {
-    if (this.currentCount > 1) {
-      this.currentCount--;
+    if (this.numCurrentCount > 1) {
+      this.numCurrentCount--;
       this.updateDataCard();
     }
   }
+
   add() {
     console.log('add');
   }
+
   show() {
     console.log('show');
   }
+
   en() {
-    this.radioBtnEn.checked = true;
-    this.radioBtnRu.checked = false;
+    this.elRadioBtnEn.checked = true;
     this.updateDataCard();
   }
+
   ru() {
-    this.radioBtnEn.checked = false;
-    this.radioBtnRu.checked = true;
+    this.elRadioBtnRu.checked = true;
     this.updateDataCard();
   }
 }
 
-const card = new Card();
+const objCard = new Card();
 
 document.body.addEventListener('click', (event) => {
-  const activeBtn = event.target;
-  const activeID = activeBtn.id;
+  const elActiveBtn = event.target;
+  const strActiveID = elActiveBtn.id;
 
-  switch (activeID) {
+  switch (strActiveID) {
     case 'next':
-      card.next();
+      objCard.next();
       break;
     case 'prev':
-      card.prev();
+      objCard.prev();
       break;
     case 'add':
-      card.add();
+      objCard.add();
       break;
     case 'show':
-      card.show();
+      objCard.show();
       break;
     case 'en':
-      card.en();
+      objCard.en();
       break;
     case 'ru':
-      card.ru();
+      objCard.ru();
       break;
     default:
       break;
