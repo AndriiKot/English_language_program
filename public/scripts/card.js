@@ -28,10 +28,10 @@ class Card {
     this.#initialize();
   }
 
-  // Private methods
   #initialize() {
     this.elLastCount.textContent = this.numMaxCount;
     this.elCurrentCount.textContent = this.numCurrentCount;
+    this.elPrevBtn.disabled = true;
     this.#updateDataCard();
   }
 
@@ -60,18 +60,27 @@ class Card {
     this.#createTemplatePrase(strPhrase, strTrans);
   }
 
-  // Public methods
   next() {
     if (!isCountLimit(this.numCurrentCount, this.numMaxCount)) {
       this.numCurrentCount++;
+      this.elPrevBtn.disabled = false;
       this.#updateDataCard();
+    }
+    if (this.numCurrentCount === this.numMaxCount) {
+      this.elNextBtn.disabled = true;
     }
   }
 
   prev() {
     if (this.numCurrentCount > 1) {
+      this.elNextBtn.disabled = false;
       this.numCurrentCount--;
       this.#updateDataCard();
+    } else {
+      this.elPrevBtn.disabled = true;
+    }
+    if (this.numCurrentCount === 1) {
+      this.elPrevBtn.disabled = true;
     }
   }
 
