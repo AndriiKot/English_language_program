@@ -3,7 +3,7 @@ html(lang="ru")
   head
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title Переводы
+    title #{level}/#{lesson}
     link(rel="stylesheet" href="/styles.css")
   body
     h1 Список фраз
@@ -13,9 +13,8 @@ html(lang="ru")
     label
       input(type="radio" name="language" value="ru" checked)
       | Русский → Английский
-    div#phrases
+    div#phrases 
     script.
       window.translations = !{JSON.stringify(translations)}
-    script(src="/script.js")
-    script(src="/scripts/test-script.js")
+    script(src="/scripts/script.js")
 
