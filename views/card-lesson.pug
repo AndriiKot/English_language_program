@@ -23,7 +23,9 @@ html(lang="ru")
       button#add.card__button.card__button--add add to top
       button#next.card__button.card__button--next next
       button#prev.card__button.card__button--prev prev
-      div#phrases phrases-test
+      div#phrases
+        h1#main-phrase main phrases
+        h2#translation-phrase translation phrases
   script.
     window.translations = !{JSON.stringify(translations)}
   script(type="module" src="/scripts/card.js")

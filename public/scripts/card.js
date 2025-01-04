@@ -5,14 +5,6 @@ import { isCountLimit } from './utils.js';
 const objDataJson = window.translations;
 const arrArray = Object.entries(objDataJson);
 
-const createTemplatePrase = (strMainPhrase, strTranslation) => {
-  const strTemplate = `
-      <h1 class="card__phrase main-language">${strMainPhrase}</h1>
-      <h2 class="card__phrase translation">${strTranslation}</h2>
-  `;
-  return strTemplate;
-};
-
 class Card {
   constructor() {
     this.arrArrayPhrases = arrArray;
@@ -29,6 +21,8 @@ class Card {
     this.elAddBtn = document.querySelector('#add');
     this.elRadioBtnEn = document.querySelector('#en');
     this.elRadioBtnRu = document.querySelector('#ru');
+    this.elMainPhrase = document.querySelector('#main-phrase');
+    this.elTranslationPhrase = document.querySelector('#translation-phrase');
     this.elRadioBtnEn.checked = true;
 
     this.initialize();
@@ -38,6 +32,11 @@ class Card {
     this.elLastCount.textContent = this.numMaxCount;
     this.elCurrentCount.textContent = this.numCurrentCount;
     this.updateDataCard();
+  }
+
+  createTemplatePrase(strMainPhrase, strTranslation) {
+    this.elMainPhrase.textContent = strMainPhrase;
+    this.elTranslationPhrase.textContent = strTranslation;
   }
 
   getPhrases() {
@@ -57,8 +56,7 @@ class Card {
   updateDataCard() {
     this.elCurrentCount.textContent = `${this.numCurrentCount}`;
     const { strPhrase, strTrans } = this.getPhrases();
-    const strTemplate = createTemplatePrase(strPhrase, strTrans);
-    document.querySelector('#phrases').innerHTML = `${strTemplate}`;
+    this.createTemplatePrase(strPhrase, strTrans);
   }
 
   next() {
