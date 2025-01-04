@@ -25,21 +25,22 @@ class Card {
     this.elTranslationPhrase = document.querySelector('#translation-phrase');
     this.elRadioBtnEn.checked = true;
 
-    this.initialize();
+    this.#initialize();
   }
 
-  initialize() {
+  // Private methods
+  #initialize() {
     this.elLastCount.textContent = this.numMaxCount;
     this.elCurrentCount.textContent = this.numCurrentCount;
-    this.updateDataCard();
+    this.#updateDataCard();
   }
 
-  createTemplatePrase(strMainPhrase, strTranslation) {
+  #createTemplatePrase(strMainPhrase, strTranslation) {
     this.elMainPhrase.textContent = strMainPhrase;
     this.elTranslationPhrase.textContent = strTranslation;
   }
 
-  getPhrases() {
+  #getPhrases() {
     let arrPhrases = this.arrArrayPhrases[this.numCurrentCount - 1];
     if (!Array.isArray(arrPhrases) || arrPhrases.length < 2) {
       arrPhrases = ['', ''];
@@ -53,23 +54,24 @@ class Card {
     };
   }
 
-  updateDataCard() {
+  #updateDataCard() {
     this.elCurrentCount.textContent = `${this.numCurrentCount}`;
-    const { strPhrase, strTrans } = this.getPhrases();
-    this.createTemplatePrase(strPhrase, strTrans);
+    const { strPhrase, strTrans } = this.#getPhrases();
+    this.#createTemplatePrase(strPhrase, strTrans);
   }
 
+  // Public methods
   next() {
     if (!isCountLimit(this.numCurrentCount, this.numMaxCount)) {
       this.numCurrentCount++;
-      this.updateDataCard();
+      this.#updateDataCard();
     }
   }
 
   prev() {
     if (this.numCurrentCount > 1) {
       this.numCurrentCount--;
-      this.updateDataCard();
+      this.#updateDataCard();
     }
   }
 
@@ -83,12 +85,12 @@ class Card {
 
   en() {
     this.elRadioBtnEn.checked = true;
-    this.updateDataCard();
+    this.#updateDataCard();
   }
 
   ru() {
     this.elRadioBtnRu.checked = true;
-    this.updateDataCard();
+    this.#updateDataCard();
   }
 }
 
