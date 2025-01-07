@@ -59,6 +59,7 @@ class Card {
     this.elCurrentCount.textContent = `${this.numCurrentCount}`;
     const { strPhrase, strTrans } = this.#getPhrases();
     this.#createTemplatePrase(strPhrase, strTrans);
+    this.elAddBtn.disabled = false;
   }
 
   next() {
@@ -86,7 +87,7 @@ class Card {
   }
 
   add() {
-    console.log('add');
+    this.elAddBtn.disabled = true;
   }
 
   en() {
