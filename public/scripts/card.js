@@ -17,13 +17,13 @@ class Card {
     this.elCurrentCount = document.querySelector('#currentCount');
     this.elNextBtn = document.querySelector('#next');
     this.elPrevBtn = document.querySelector('#prev');
-    this.elShowBtn = document.querySelector('#show');
     this.elAddBtn = document.querySelector('#add');
+    this.elRadioBtnTranslOn = document.querySelector('#translation-on');
+    this.elRadioBtnTranslOff = document.querySelector('#translation-off');
     this.elRadioBtnEn = document.querySelector('#en');
     this.elRadioBtnRu = document.querySelector('#ru');
     this.elMainPhrase = document.querySelector('#main-phrase');
     this.elTranslationPhrase = document.querySelector('#translation-phrase');
-    this.elRadioBtnEn.checked = true;
 
     this.#initialize();
   }
@@ -32,6 +32,7 @@ class Card {
     this.elLastCount.textContent = this.numMaxCount;
     this.elCurrentCount.textContent = this.numCurrentCount;
     this.elPrevBtn.disabled = true;
+    this.elTranslationPhrase.style.visibility = 'hidden';
     this.#updateDataCard();
   }
 
@@ -49,8 +50,8 @@ class Card {
     const boolIsRu = this.elRadioBtnRu.checked;
 
     return {
-      strPhrase: arrPhrases[+boolIsEn],
-      strTrans: arrPhrases[+boolIsRu],
+      strPhrase: arrPhrases[+boolIsRu],
+      strTrans: arrPhrases[+boolIsEn],
     };
   }
 
@@ -88,10 +89,6 @@ class Card {
     console.log('add');
   }
 
-  show() {
-    console.log('show');
-  }
-
   en() {
     this.elRadioBtnEn.checked = true;
     this.#updateDataCard();
@@ -100,6 +97,12 @@ class Card {
   ru() {
     this.elRadioBtnRu.checked = true;
     this.#updateDataCard();
+  }
+  on() {
+    this.elTranslationPhrase.style.visibility = 'visible';
+  }
+  off() {
+    this.elTranslationPhrase.style.visibility = 'hidden';
   }
 }
 
@@ -118,14 +121,17 @@ document.body.addEventListener('click', (event) => {
     case 'add':
       objCard.add();
       break;
-    case 'show':
-      objCard.show();
-      break;
     case 'en':
       objCard.en();
       break;
     case 'ru':
       objCard.ru();
+      break;
+    case 'translation-on':
+      objCard.on();
+      break;
+    case 'translation-off':
+      objCard.off();
       break;
     default:
       break;

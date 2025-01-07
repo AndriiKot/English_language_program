@@ -4,25 +4,33 @@ html(lang="ru")
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title #{level}/#{lesson}
-    //- link(rel="stylesheet" href="/styles.css")
   body
-    div.card
-      h3.card__level #{level} lesson-#{lesson}
-      p.card__count
+    div
+      h3 #{level} lesson-#{lesson}
+      p
         span#currentCount.card__count--element
         | /
         span#lastCount.card__count--element
-      div.card__inputs
-        label.card__input-en
-          input(id = "en" type="radio" name="language" value="en")
+      fieldset
+        legend language:
+        label(for="en")
+          input#en(type="radio" name="language" value="en" checked="checked")
           | en → ru
-        label.card__input-ru
-          input(id = "ru" type="radio" name="language" value="ru" )
+        label(for="ru")
+          input#ru(type="radio" name="language" value="ru")
           | ru → en
-      button#show.card__button.card__button--show translation
-      button#add.card__button.card__button--add add to top
-      button#next.card__button.card__button--next next
-      button#prev.card__button.card__button--prev prev
+      fieldset
+        legend Translation:
+        label(for="translation-on")
+            input#translation-on(type="radio", name="translation", value="on")
+            | On
+        label(for="translation-off")
+            input#translation-off(type="radio", name="translation", value="off" checked="checked")
+            | Off
+
+      button#add add to top
+      button#next next
+      button#prev prev
       div#phrases
         h1#main-phrase main phrases
         h2#translation-phrase translation phrases
