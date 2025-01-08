@@ -1,0 +1,40 @@
+doctype html
+html(lang="ru")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title #{level}/#{lesson}
+  body
+    div
+      h3 #{level} lesson-#{lesson}
+      p
+        span#currentCount.card__count--element
+        | /
+        span#lastCount.card__count--element
+      fieldset
+        legend language:
+        label(for="en")
+          input#en(type="radio" name="language" value="en" checked="checked")
+          | en → ru
+        label(for="ru")
+          input#ru(type="radio" name="language" value="ru")
+          | ru → en
+      fieldset
+        legend Translation:
+        label(for="translation-on")
+            input#translation-on(type="radio", name="translation", value="on")
+            | On
+        label(for="translation-off")
+            input#translation-off(type="radio", name="translation", value="off" checked="checked")
+            | Off
+
+      button#add add for repeat
+      button#prev prev
+      button#next next
+      div#phrases
+        h1#main-phrase main phrases
+        h2#translation-phrase translation phrases
+  script.
+    window.translations = !{JSON.stringify(translations)}
+  script(type="module" src="/scripts/card.js")
+

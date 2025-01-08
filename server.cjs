@@ -50,9 +50,25 @@ async function getTranslations(level, lesson) {
     return JSON.parse(data);
   } catch (error) {
     console.error(`Ошибка чтения файла: ${error}`);
-    return {}; // Возвращаем пустой объект при ошибке
+    return {};
   }
 }
+
+app.get('/:level/repeat', async (req, res) => {
+  const { level } = req.params;
+
+  const translations = await getTranslations(level, 'repeat');
+
+  if (Object.keys(translations).length === 0) {
+    res.render('developingLesson');
+  } else {
+    res.render('card-repeat', {
+      level: level,
+      lesson: 'repeat',
+      translations: translations,
+    });
+  }
+});
 
 app.get('/:level/:lesson', async (req, res) => {
   const { level, lesson } = req.params;

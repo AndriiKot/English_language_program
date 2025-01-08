@@ -5,11 +5,15 @@ html(lang="ru")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(rel="stylesheet" href="styles.css")
     title Уроки
-  body.body
+  body
     .container
       h1.heading Выберите уроки
       nav.menu
         ul.menu__list
-          each i in Array(50).fill().map((_, idx) => idx + 1)
+          each i in Array(51).fill().map((_, idx) => idx)
             li.menu__item
-              a.menu__link(href=`${level}/${i}`) #{i}
+              if i == 0
+                a.menu__link(href=`${level}/repeat`) repeat
+              else
+                a.menu__link(href=`${level}/${i}`) #{i}
+
