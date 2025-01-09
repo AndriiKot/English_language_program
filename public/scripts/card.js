@@ -88,6 +88,34 @@ class Card {
 
   add() {
     this.elAddBtn.disabled = true;
+
+    const { strPhrase, strTrans } = this.#getPhrases();
+
+    const dataToSend = {
+      phrase: strPhrase,
+      translation: strTrans,
+    };
+
+    fetch('/api/add-phrase', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(dataToSend),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log('Success:', data);
+        // Обновите интерфейс или выполните другие действия по необходимости
+      })
+      .catch((error) => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
   }
 
   en() {

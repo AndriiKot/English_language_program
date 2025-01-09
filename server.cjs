@@ -5,6 +5,7 @@ const fs = require('node:fs/promises');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+app.use(express.json());
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
@@ -91,6 +92,38 @@ app.get('/:level/:lesson', async (req, res) => {
   } else {
     res.status(404).send('Уровень не найден');
   }
+});
+
+app.post('/api/add-phrase', (req, res) => {
+  const { phrase, translation } = req.body;
+
+  // Путь к вашему JSON файлу
+  const filePath = path.join(__dirname, 'data/A0/A0-Lreapet.json');
+
+  // Чтение существующих данных
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      return res.status(500).send('Error reading file');
+    }
+
+    let jsonData;
+    try {
+      jsonData = JSON.parse(data);
+    } catch (jsonErr) {
+      return res.status(500).send('Error parsing JSON');
+    }
+
+    // Добавление новой фразы
+    jsonData.push([phrase, translation]);
+
+    // Запись обновленных данных обратно в файл
+    fs.writeFile(filePath, JSON.stringify(jsonData, null, 2), (writeErr) => {
+      if (writeErr) {
+        return res.status(500).send('Error writing file');
+      }
+      res.status(200).send('Phrase added successfully');
+    });
+  });
 });
 
 app.listen(PORT, () => {
