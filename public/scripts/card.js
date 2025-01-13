@@ -41,24 +41,35 @@ class Card {
     this.elTranslationPhrase.textContent = strTranslation;
   }
 
-  #getPhrases() {
-    let arrPhrases = this.arrArrayPhrases[this.numCurrentCount - 1];
-    if (!Array.isArray(arrPhrases) || arrPhrases.length < 2) {
-      arrPhrases = ['', ''];
-    }
+  #getCurrentPhrase() {
+    const arrCurrentPhrase = this.arrArrayPhrases[this.numCurrentCount - 1];
+    const strPhrase = arrCurrentPhrase[0] || '';
+    const strTrans = arrCurrentPhrase[1] || '';
+    return {
+      strPhrase,
+      strTrans,
+    };
+  }
+
+  #getPhrasesMain() {
+    const objCurrentPhrase = this.#getCurrentPhrase();
     const boolIsEn = this.elRadioBtnEn.checked;
     const boolIsRu = this.elRadioBtnRu.checked;
 
     return {
-      strPhrase: arrPhrases[+boolIsRu],
-      strTrans: arrPhrases[+boolIsEn],
+      strMainPhrase: boolIsEn
+        ? objCurrentPhrase.strPhrase
+        : objCurrentPhrase.strTrans,
+      strTransPhrase: boolIsRu
+        ? objCurrentPhrase.strTrans
+        : objCurrentPhrase.strPhrase,
     };
   }
 
   #updateDataCard() {
     this.elCurrentCount.textContent = `${this.numCurrentCount}`;
-    const { strPhrase, strTrans } = this.#getPhrases();
-    this.#createTemplatePrase(strPhrase, strTrans);
+    const { strMainPhrase, strTransPhrase } = this.#getPhrasesMain();
+    this.#createTemplatePrase(strMainPhrase, strTransPhrase);
     this.elAddBtn.disabled = false;
   }
 
@@ -89,7 +100,7 @@ class Card {
   add() {
     this.elAddBtn.disabled = true;
 
-    const { strPhrase, strTrans } = this.#getPhrases();
+    const { strPhrase, strTrans } = this.#getCurrentPhrase();
 
     const dataToSend = {
       phrase: strPhrase,
