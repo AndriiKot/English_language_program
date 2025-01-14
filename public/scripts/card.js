@@ -51,7 +51,7 @@ class Card {
     };
   }
 
-  #getPhrasesMain() {
+  #findPhrasesMain() {
     const objCurrentPhrase = this.#getCurrentPhrase();
     const boolIsEn = this.elRadioBtnEn.checked;
     const boolIsRu = this.elRadioBtnRu.checked;
@@ -68,7 +68,7 @@ class Card {
 
   #updateDataCard() {
     this.elCurrentCount.textContent = `${this.numCurrentCount}`;
-    const { strMainPhrase, strTransPhrase } = this.#getPhrasesMain();
+    const { strMainPhrase, strTransPhrase } = this.#findPhrasesMain();
     this.#createTemplatePrase(strMainPhrase, strTransPhrase);
     this.elAddBtn.disabled = false;
   }
@@ -122,7 +122,6 @@ class Card {
       })
       .then((data) => {
         console.log('Success:', data);
-        // Обновите интерфейс или выполните другие действия по необходимости
       })
       .catch((error) => {
         console.error('There was a problem with the fetch operation:', error);
