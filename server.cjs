@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
-const validLevels = ['A0', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+const validLevels = ['A0', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2',];
 
 const isValidLesson = (lesson, startRang = 1, endRang = 50) => {
   const parsedLesson = parseInt(lesson);
@@ -28,6 +28,11 @@ const isValidLesson = (lesson, startRang = 1, endRang = 50) => {
   }
   return flag;
 };
+
+app.get('/hot-repeat', (req, res) => {
+  res.render('card-hot-repeat');
+});
+
 
 app.get('/:level', (req, res) => {
   const level = req.params.level;
