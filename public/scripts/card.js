@@ -6,19 +6,19 @@ const objDataJson = window.translations;
 const arrArray = Object.entries(objDataJson);
 
 class Card {
-  constructor(strIdBtnAdd) {
-    this.elIDBtnAdd = strIdBtnAdd;
+  constructor() {
     this.arrArrayPhrases = arrArray;
 
     this.numDefaultCount = 1;
     this.numCurrentCount = this.numDefaultCount;
     this.numMaxCount = arrArray.length;
 
+    this.elDeleteBtn = document.querySelector('#delete');
     this.elLastCount = document.querySelector('#lastCount');
     this.elCurrentCount = document.querySelector('#currentCount');
     this.elNextBtn = document.querySelector('#next');
     this.elPrevBtn = document.querySelector('#prev');
-    this.elAddBtn = document.querySelector(`#${this.elIDBtnAdd}`);
+    this.elAddBtn = document.querySelector('#add');
     this.elRadioBtnTranslOn = document.querySelector('#translation-on');
     this.elRadioBtnTranslOff = document.querySelector('#translation-off');
     this.elRadioBtnEn = document.querySelector('#en');
@@ -72,6 +72,10 @@ class Card {
     const { strMainPhrase, strTransPhrase } = this.#findPhrasesMain();
     this.#createTemplatePrase(strMainPhrase, strTransPhrase);
     this.elAddBtn.disabled = false;
+  }
+
+  delete() {
+    console.log('delete');
   }
 
   next() {
@@ -146,12 +150,15 @@ class Card {
   }
 }
 
-const objCard = new Card('add');
+const objCard = new Card();
 
 document.body.addEventListener('click', (event) => {
   const elActiveBtn = event.target;
   const strActiveID = elActiveBtn.id;
   switch (strActiveID) {
+    case 'delete':
+      objCard.delete();
+      break;
     case 'next':
       objCard.next();
       break;

@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
-const validLevels = ['A0', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2',];
+const validLevels = ['A0', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 
 const isValidLesson = (lesson, startRang = 1, endRang = 50) => {
   const parsedLesson = parseInt(lesson);
@@ -29,10 +29,40 @@ const isValidLesson = (lesson, startRang = 1, endRang = 50) => {
   return flag;
 };
 
-app.get('/hot-repeat', (req, res) => {
-  res.render('card-hot-repeat');
-});
+async function getTranslationsHotRepeat() {
+  try {
+    const filePath = path.join(
+      __dirname,
+      'data',
+      'hot-repeat',
+      `hot-repeat.json`,
+    );
+    const data = await fs.readFile(filePath, 'utf8');
+    return JSON.parse(data);
+  } catch (error) {
+    console.error(`Ошибка чтения файла: ${error}`);
+    return {};
+  }
+}
 
+app.get('/hot-repeat', async (req, res) => {
+  try {
+    const translations = await getTranslationsHotRepeat();
+
+    if (Object.keys(translations).length === 0) {
+      res.render('empty-lesson');
+    } else {
+      res.render('card-hot-repeat', {
+        level: 'hot-repeat',
+        lesson: 'repeat',
+        translations: translations,
+      });
+    }
+  } catch (error) {
+    console.error(`Ошибка при получении переводов: ${error}`);
+    res.status(500).send('Ошибка сервера');
+  }
+});
 
 app.get('/:level', (req, res) => {
   const level = req.params.level;
@@ -66,7 +96,7 @@ app.get('/:level/repeat', async (req, res) => {
   const translations = await getTranslations(level, 'repeat');
 
   if (Object.keys(translations).length === 0) {
-    res.render('developingLesson');
+    res.render('developing-lesson');
   } else {
     res.render('card-repeat', {
       level: level,
@@ -83,7 +113,7 @@ app.get('/:level/:lesson', async (req, res) => {
     if (isValidLesson(lesson)) {
       const translations = await getTranslations(level, lesson);
       if (Object.keys(translations).length === 0) {
-        res.render('developingLesson');
+        res.render('developing-lesson');
       } else {
         res.render('card-lesson', {
           level: level,
