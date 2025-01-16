@@ -6,7 +6,8 @@ const objDataJson = window.translations;
 const arrArray = Object.entries(objDataJson);
 
 class Card {
-  constructor() {
+  constructor(strIdBtnAdd) {
+    this.elIDBtnAdd = strIdBtnAdd;
     this.arrArrayPhrases = arrArray;
 
     this.numDefaultCount = 1;
@@ -17,7 +18,7 @@ class Card {
     this.elCurrentCount = document.querySelector('#currentCount');
     this.elNextBtn = document.querySelector('#next');
     this.elPrevBtn = document.querySelector('#prev');
-    this.elAddBtn = document.querySelector('#add');
+    this.elAddBtn = document.querySelector(`#${this.elIDBtnAdd}`);
     this.elRadioBtnTranslOn = document.querySelector('#translation-on');
     this.elRadioBtnTranslOff = document.querySelector('#translation-off');
     this.elRadioBtnEn = document.querySelector('#en');
@@ -145,7 +146,7 @@ class Card {
   }
 }
 
-const objCard = new Card();
+const objCard = new Card('add');
 
 document.body.addEventListener('click', (event) => {
   const elActiveBtn = event.target;
