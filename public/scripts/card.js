@@ -62,8 +62,8 @@ class Card {
         ? objCurrentPhrase.strPhrase
         : objCurrentPhrase.strTrans,
       strTransPhrase: boolIsRu
-        ? objCurrentPhrase.strTrans
-        : objCurrentPhrase.strPhrase,
+        ? objCurrentPhrase.strPhrase
+        : objCurrentPhrase.strTrans,
     };
   }
 
