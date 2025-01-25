@@ -1,4 +1,0 @@
-
-node "./task-scripts/manager-package-version.js"
-
-npm run last-lint-staged
