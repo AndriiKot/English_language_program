@@ -1,9 +1,10 @@
-const express = require('express');
-const { getLesson, getTranslations, getTranslationsHotRepeat } = require('../controllers/lessonController');
+import express from 'express';
+import { getLesson, getTranslations, getTranslationsHotRepeat } from '../controllers/lessonController.js';
+
 const router = express.Router();
 
 router.get('/:level', getLesson);
-router.get('/:level/repeat', getTranslations);
+router.get('/:level/repeat', getTranslationsHotRepeat);
 router.get('/:level/:lesson', getTranslations);
 
-module.exports = router;
+export default router;
