@@ -1,0 +1,122 @@
+{
+  "У меня на балконе находится деревянный ящик": {
+    "A wooden box is on my balcony": {
+      "level": "beginner",
+      "expression": "book",
+      "formal": true,
+      "version": "1.0.0"
+    },
+    "There is a wooden box on my balcony": {
+      "level": "intermediate",
+      "expression": "nitral",
+      "formal": true,
+      "version": "2.0.0"
+    },
+    "On my balcony there is a wooden box": {
+      "level": "intermediate",
+      "expression": "nitral",
+      "formal": true,
+      "version": "2.1.0"
+    },
+    "I have a wooden box on my balcony": {
+      "level": "intermediate",
+      "expression": "accent",
+      "version": "3.0.0"
+    },
+    "I have a wooden box on the balcony": {
+      "level": "intermediate",
+      "expression": "accent",
+      "version": "3.0.1"
+    },
+    "I have a wooden box, which is on my balcony": {
+      "level": "advanced",
+      "expression": "accent",
+      "version": "3.1.0"
+    },
+    "I have a wooden box, which is on the balcony": {
+      "level": "advanced",
+      "expression": "accent",
+      "version": "3.1.1"
+    },
+    "You can see a wooden box on me balcony": {
+      "level": "advanced",
+      "expression": "accent",
+      "formal": true,
+      "version": "4.0.0"
+    },
+    "You can see a wooden box on the balcony": {
+      "level": "advanced",
+      "expression": "accent",
+      "formal": true,
+      "version": "4.0.1"
+    }
+  },
+  "Можешь подождать здесь": {
+    "You can wait here": {
+      "level": "beginner",
+      "informal": true,
+      "version": "1.0.0"
+    },
+    "You can wait in here": {
+      "level": "beginner",
+      "informal": true,
+      "version": "1.0.1"
+    },
+    "You may wait here": {
+      "level": "beginner",
+      "formal": true,
+      "version": "2.0.0"
+    },
+    "You may wait in here": {
+      "level": "beginner",
+      "formal": true,
+      "version": "2.0.1"
+    },
+    "You are allowed to wait here": {
+      "level": "intermediate",
+      "formal": true,
+      "version": "3.0.0"
+    },
+    "You are allowed to wait in here": {
+      "level": "intermediate",
+      "formal": true,
+      "version": "3.0.1"
+    },
+    "You are free to wait here": {
+      "level": "advanced",
+      "informal": true,
+      "casual": true,
+      "version": "4.0.0"
+    },
+    "You are free to wait in here": {
+      "level": "advanced",
+      "informal": true,
+      "casual": true,
+      "version": "4.0.1"
+    },
+    "Feel free to wait here": {
+      "level": "advanced",
+      "informal": true,
+      "casual": true,
+      "version": "4.1.0"
+    },
+    "Feel free to wait in here": {
+      "level": "advanced",
+      "informal": true,
+      "casual": true,
+      "version": "4.1.1"
+    },
+    "Wait here, if you want to": {
+      "level": "advanced",
+      "informal": true,
+      "casual": true,
+      "version": "5.0.0"
+    },
+    "Wait in here, if you want to": {
+      "level": "advanced",
+      "informal": true,
+      "casual": true,
+      "version": "5.0.1"
+    }
+  }
+}
